@@ -28,12 +28,15 @@ def main():
                 data = eval(data)
                 logging.info(data)
 
-                if data["command"] == "pause":
-                    client.containers.get(data["id"]).pause()
-                    logging.info(f"Pause container {data['id']}")
-                elif data["command"] == "unpause":
-                    client.containers.get(data["id"]).unpause()
-                    logging.info(f"Unpause container {data['id']}")
+                try:
+                    if data["command"] == "pause":
+                        client.containers.get(data["id"]).pause()
+                        logging.info(f"Pause container {data['id']}")
+                    elif data["command"] == "unpause":
+                        client.containers.get(data["id"]).unpause()
+                        logging.info(f"Unpause container {data['id']}")
+                except Exception as err:
+                    logging.error(f"Not able to {data}" + str(err))
 
                 break
 
