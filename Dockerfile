@@ -1,7 +1,8 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9
+FROM fedora
 
 # Install necessary libs 
+RUN yum -y install docker
+RUN dnf install python3-pip
 RUN pip install docker
 
 # Set the working directory in the container
